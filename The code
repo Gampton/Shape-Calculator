@@ -1,0 +1,103 @@
+Module Module1
+
+    Structure Dimentions
+        Dim width As Double
+        Dim hight As Double
+        Dim radius As Double
+
+    End Structure
+
+    Dim circle As Dimentions
+    Dim rectangle As Dimentions
+    Dim triangle As Dimentions
+
+    Dim circlecheck As Double = 0
+    Dim rectanglecheck As Double = 0
+    Dim trianglecheck As Double = 0
+
+    Sub Main()
+
+        Dim ShapeNum As Integer
+        Console.WriteLine("How many shapes do you have?")
+        ShapeNum = Console.ReadLine()
+        Dim theshape(ShapeNum - 1) As String
+
+        For i = 0 To (ShapeNum - 1)
+            ShapeInput(theshape)
+        Next
+
+        For i = 0 To (ShapeNum - 1)
+            Calculator()
+        Next
+
+
+        Console.ReadKey()
+    End Sub
+
+    Dim x As Integer = -1
+
+    Sub Calculator()
+        Dim answer As Double
+        Do Until circlecheck = 0 And rectanglecheck = 0 And trianglecheck = 0
+            If circlecheck > 0 Then
+                Console.WriteLine("")
+                Console.WriteLine("Circle:")
+                Console.WriteLine("radius: " & circle.radius)
+                answer = System.Math.PI * circle.radius ^ 2
+                Console.WriteLine("Area: " & answer)
+
+                circlecheck = circlecheck - 1
+            ElseIf rectanglecheck > 0 Then
+                Console.WriteLine("")
+                Console.WriteLine("Rectangle:")
+                Console.WriteLine("Width: " & rectangle.width)
+                Console.WriteLine("Hight: " & rectangle.hight)
+                answer = rectangle.width * rectangle.hight
+                Console.WriteLine("Area: " & answer)
+
+                rectanglecheck = rectanglecheck - 1
+            ElseIf trianglecheck > 0 Then
+                Console.WriteLine("")
+                Console.WriteLine("Triangle:")
+                Console.WriteLine("Width: " & triangle.width)
+                Console.WriteLine("Hight: " & triangle.hight)
+                answer = triangle.width * triangle.hight * 0.5
+                Console.WriteLine("Area: " & answer)
+
+                trianglecheck = trianglecheck - 1
+            End If
+        Loop
+
+
+    End Sub
+
+    Sub ShapeInput(ByRef shapetype() As String)
+        x = x + 1
+        Console.WriteLine("")
+        Console.WriteLine("Enter shape type:")
+        shapetype(x) = Console.ReadLine
+
+        If shapetype(x) = "circle" Or shapetype(x) = "c" Then
+            Console.WriteLine("Enter the radius: ")
+            circle.radius = Console.ReadLine()
+            circlecheck = circlecheck + 1
+        ElseIf shapetype(x) = "rectangle" Or shapetype(x) = "r" Then
+            Console.WriteLine("Enter the height: ")
+            rectangle.hight = Console.ReadLine()
+            Console.WriteLine("Enter the width: ")
+            rectangle.width = Console.ReadLine()
+            rectanglecheck = rectanglecheck + 1
+        ElseIf shapetype(x) = "triangle" Or shapetype(x) = "t" Then
+            Console.WriteLine("Enter the height: ")
+            triangle.hight = Console.ReadLine()
+            Console.WriteLine("Enter the width: ")
+            triangle.width = Console.ReadLine()
+            trianglecheck = trianglecheck + 1
+        Else
+
+        End If
+
+    End Sub
+
+End Module
+
